@@ -1,4 +1,15 @@
 export default function handler(req, res) {
+  // Allow requests from your React app (localhost:3000)
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  // You can also allow multiple origins by adding more logic if necessary
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Handle preflight requests (OPTIONS method)
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   const data = [
     {
       question: "Which is the most popular JavaScript framework?",
